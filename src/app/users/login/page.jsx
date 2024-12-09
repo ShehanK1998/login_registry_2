@@ -1,8 +1,39 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import React from "react";
 
-const Login = () => {
+export default function Login() {
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const router = useRouter();
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      alert('Login successful!');
+      console.log('Token:', data.token);
+      router.push('/'); // Redirect to home or dashboard
+    } else {
+      const error = await response.json();
+      alert(`Error: ${error.message}`);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
       {/* <Header /> */}
@@ -10,7 +41,7 @@ const Login = () => {
         <h2 className="text-2xl font-bold text-center text-blue-600">
           TrekLanka Login
         </h2>
-        <form className="mt-6">
+        <form className="mt-6" onSubmit={handleSubmit}>
           {/* Email Input */}
           <div>
             <label
@@ -25,6 +56,7 @@ const Login = () => {
               name="email"
               placeholder="Enter your email"
               className="w-full px-4 py-2 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              onChange={handleChange}
               required
             />
           </div>
@@ -42,6 +74,7 @@ const Login = () => {
               name="password"
               placeholder="Enter your password"
               className="w-full px-4 py-2 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              onChange={handleChange}
               required
             />
           </div>
@@ -78,6 +111,4 @@ const Login = () => {
       {/* <Footer /> */}
     </div>
   );
-};
-
-export default Login;
+}

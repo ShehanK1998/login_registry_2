@@ -1,8 +1,43 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import React from "react";
 
-const Register = () => {
+export default function Signup() {
+  const [formData, setFormData] = useState({ username: '', email: '', password: '' });
+  const router = useRouter();
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      // Check if the response is OK (status code 200-299)
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Signup failed');
+      }
+
+      const data = await response.json(); // Parse response body as JSON
+      alert('Signup successful!');
+      router.push('/users/login'); // Redirect to login page
+    } catch (error) {
+      alert(`Error: ${error.message}`);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-green-50 to-green-100">
       {/* <Header /> */}
@@ -17,14 +52,15 @@ const Register = () => {
               htmlFor="name"
               className="block text-sm font-medium text-gray-700"
             >
-              Full Name
+              Username
             </label>
             <input
               type="text"
               id="name"
               name="name"
-              placeholder="Enter your full name"
+              placeholder="Enter your username"
               className="w-full px-4 py-2 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              onChange={handleChange}
               required
             />
           </div>
@@ -42,6 +78,7 @@ const Register = () => {
               name="email"
               placeholder="Enter your email"
               className="w-full px-4 py-2 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              onChange={handleChange}
               required
             />
           </div>
@@ -59,26 +96,11 @@ const Register = () => {
               name="password"
               placeholder="Enter your password"
               className="w-full px-4 py-2 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              onChange={handleChange}
               required
             />
           </div>
-          {/* Confirm Password Input */}
-          <div className="mt-4">
-            <label
-              htmlFor="confirm-password"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              id="confirm-password"
-              name="confirm-password"
-              placeholder="Confirm your password"
-              className="w-full px-4 py-2 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-              required
-            />
-          </div>
+          
           {/* Register Button */}
           <div className="mt-6">
             <button
@@ -103,6 +125,4 @@ const Register = () => {
       {/* <Footer /> */}
     </div>
   );
-};
-
-export default Register;
+}

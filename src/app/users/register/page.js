@@ -18,19 +18,17 @@ export default function Signup() {
     e.preventDefault();
 
     try {
-      const response = await fetch('/api/signup', {
+      const response = await fetch('/api/users/register', { // Updated the API endpoint
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
-      // Check if the response is OK (status code 200-299)
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || 'Signup failed');
       }
 
-      const data = await response.json(); // Parse response body as JSON
       alert('Signup successful!');
       router.push('/users/login'); // Redirect to login page
     } catch (error) {
@@ -45,19 +43,19 @@ export default function Signup() {
         <h2 className="text-2xl font-bold text-center text-green-600">
           TrekLanka Registration
         </h2>
-        <form className="mt-6">
-          {/* Name Input */}
+        <form className="mt-6" onSubmit={handleSubmit}> {/* Added onSubmit handler */}
+          {/* Username Input */}
           <div>
             <label
-              htmlFor="name"
+              htmlFor="username"
               className="block text-sm font-medium text-gray-700"
             >
               Username
             </label>
             <input
               type="text"
-              id="name"
-              name="name"
+              id="username"
+              name="username"  // Changed from "name" to "username" to match state
               placeholder="Enter your username"
               className="w-full px-4 py-2 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
               onChange={handleChange}

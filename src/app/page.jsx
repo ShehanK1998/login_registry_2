@@ -6,7 +6,6 @@ const Home = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-
       {/* Hero Section */}
       <header className="flex flex-col items-center justify-center flex-1 bg-gradient-to-br from-blue-50 to-blue-200 text-center">
         <h1 className="text-4xl font-extrabold text-blue-600 mb-4">

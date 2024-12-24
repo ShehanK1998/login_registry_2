@@ -41,7 +41,7 @@ export default function Signup() {
       {/* <Header /> */}
       <div className="w-full max-w-lg p-6 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center text-green-600">
-          TrekLanka Registration
+          User Registration
         </h2>
         <form className="mt-6" onSubmit={handleSubmit}> {/* Added onSubmit handler */}
           {/* Username Input */}

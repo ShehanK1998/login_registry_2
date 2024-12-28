@@ -1,11 +1,11 @@
 import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Header2 from "@/components/Header2";
 import React from "react";
 
 const Home = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      <Header2 />
       {/* Hero Section */}
       <header className="flex flex-col items-center justify-center flex-1 bg-gradient-to-br from-emerald-50 to-emerald-200 text-center">
         <h1 className="text-4xl font-extrabold text-sky-800 mb-4">
@@ -26,10 +26,10 @@ const Home = () => {
         {/* Register Button */}
         <div className="mt-6">
           <a
-            href="/roles"
+            href="/admin"
             className="px-6 py-3 bg-red-500 text-white rounded-lg font-medium text-lg hover:bg-red-600"
           >
-            Register
+            Admin login
           </a>
         </div>
       </header>

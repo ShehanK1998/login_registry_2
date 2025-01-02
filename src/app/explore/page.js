@@ -19,14 +19,14 @@ const Explore = () => {
         </div>
         <div className="absolute top-30 right-10">
           <img
-            src="/images/card2.jpg" // Replace with the path to your image card
+            src="/images/card2.jpeg" // Replace with the path to your image card
             alt="Card 2"
             className="w-80 h-80 object-cover rounded-lg shadow-lg"
           />
         </div>
         <div className="absolute bottom-0 left-10">
           <img
-            src="/images/card3.jpg" // Replace with the path to your image card
+            src="/images/card3.webp" // Replace with the path to your image card
             alt="Card 3"
             className="w-80 h-80 object-cover rounded-lg shadow-lg"
           />

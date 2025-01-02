@@ -1,12 +1,12 @@
 import React from "react";
 import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Header2 from "@/components/Header2";
 
 const About = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header */}
-      <Header />
+      <Header2 />
 
       {/* About Content */}
       <main className="flex flex-col items-center justify-center flex-1 bg-gradient-to-br from-green-50 to-green-200 text-center px-6">

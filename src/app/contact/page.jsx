@@ -1,11 +1,11 @@
 import React from "react";
 import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Header2 from "@/components/Header2";
 const Contact = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header */}
-      <Header />
+      <Header2 />
 
       {/* Contact Content */}
       <main className="flex flex-col items-center justify-center flex-1 bg-gradient-to-br from-blue-50 to-blue-200 px-6 text-center">

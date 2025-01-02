@@ -14,9 +14,18 @@ const Dashboard = () => {
 
   // State for form input
   const [newPlace, setNewPlace] = useState({ name: "", description: "" });
-  const [newAccommodation, setNewAccommodation] = useState({ name: "", description: "" });
-  const [newRestaurant, setNewRestaurant] = useState({ name: "", description: "" });
-  const [newTransport, setNewTransport] = useState({ name: "", description: "" });
+  const [newAccommodation, setNewAccommodation] = useState({
+    name: "",
+    description: "",
+  });
+  const [newRestaurant, setNewRestaurant] = useState({
+    name: "",
+    description: "",
+  });
+  const [newTransport, setNewTransport] = useState({
+    name: "",
+    description: "",
+  });
 
   // Add Item Functions
   const handleAddPlace = (e) => {
@@ -27,13 +36,19 @@ const Dashboard = () => {
 
   const handleAddAccommodation = (e) => {
     e.preventDefault();
-    setAccommodation([...accommodation, { ...newAccommodation, id: accommodation.length + 1 }]);
+    setAccommodation([
+      ...accommodation,
+      { ...newAccommodation, id: accommodation.length + 1 },
+    ]);
     setNewAccommodation({ name: "", description: "" });
   };
 
   const handleAddRestaurant = (e) => {
     e.preventDefault();
-    setRestaurants([...restaurants, { ...newRestaurant, id: restaurants.length + 1 }]);
+    setRestaurants([
+      ...restaurants,
+      { ...newRestaurant, id: restaurants.length + 1 },
+    ]);
     setNewRestaurant({ name: "", description: "" });
   };
 
@@ -76,7 +91,9 @@ const Dashboard = () => {
       const updatedAccommodation = accommodation.filter((acc) => acc.id !== id);
       setAccommodation(updatedAccommodation);
     } else if (section === "restaurants") {
-      const updatedRestaurants = restaurants.filter((restaurant) => restaurant.id !== id);
+      const updatedRestaurants = restaurants.filter(
+        (restaurant) => restaurant.id !== id
+      );
       setRestaurants(updatedRestaurants);
     } else if (section === "transport") {
       const updatedTransport = transport.filter((trans) => trans.id !== id);
@@ -86,15 +103,26 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-100">
-      <h1 className="text-2xl font-bold text-black mb-4">Admin Dashboard</h1>
-
+      <div className="bg-white shadow-md rounded-lg p-6 w-full">
+    <div className="flex justify-between items-center mb-6">
+      <h1 className="text-2xl font-bold text-gray-800">Admin Dashboard</h1>
+      <button
+        className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
+        onClick={() => (window.location.href = "/")}
+      >
+        Logout
+      </button>
+    </div>
+  </div>
       {/* Navbar */}
       <nav className="mb-6 w-full bg-blue-500 p-4">
         <ul className="flex justify-around">
           <li>
             <button
               onClick={() => setActiveSection("places")}
-              className={`text-white font-semibold ${activeSection === "places" ? "underline" : ""}`}
+              className={`text-white font-semibold ${
+                activeSection === "places" ? "underline" : ""
+              }`}
             >
               Places
             </button>
@@ -102,7 +130,9 @@ const Dashboard = () => {
           <li>
             <button
               onClick={() => setActiveSection("accommodation")}
-              className={`text-white font-semibold ${activeSection === "accommodation" ? "underline" : ""}`}
+              className={`text-white font-semibold ${
+                activeSection === "accommodation" ? "underline" : ""
+              }`}
             >
               Accommodation
             </button>
@@ -110,7 +140,9 @@ const Dashboard = () => {
           <li>
             <button
               onClick={() => setActiveSection("restaurants")}
-              className={`text-white font-semibold ${activeSection === "restaurants" ? "underline" : ""}`}
+              className={`text-white font-semibold ${
+                activeSection === "restaurants" ? "underline" : ""
+              }`}
             >
               Restaurants
             </button>
@@ -118,7 +150,9 @@ const Dashboard = () => {
           <li>
             <button
               onClick={() => setActiveSection("transport")}
-              className={`text-white font-semibold ${activeSection === "transport" ? "underline" : ""}`}
+              className={`text-white font-semibold ${
+                activeSection === "transport" ? "underline" : ""
+              }`}
             >
               Transport
             </button>
@@ -130,23 +164,32 @@ const Dashboard = () => {
       {activeSection === "places" && (
         <div className="w-80 mb-8">
           <h2 className="text-xl font-semibold mb-4">Add Place</h2>
-          <form onSubmit={handleAddPlace} className="bg-white p-6 rounded shadow-md">
+          <form
+            onSubmit={handleAddPlace}
+            className="bg-white p-6 rounded shadow-md"
+          >
             <div className="mb-4">
               <label className="block text-sm font-bold mb-2">Name</label>
               <input
                 type="text"
                 value={newPlace.name}
-                onChange={(e) => setNewPlace({ ...newPlace, name: e.target.value })}
+                onChange={(e) =>
+                  setNewPlace({ ...newPlace, name: e.target.value })
+                }
                 className="w-full px-3 py-2 border rounded"
                 required
               />
             </div>
             <div className="mb-4">
-              <label className="block text-sm font-bold mb-2">Description</label>
+              <label className="block text-sm font-bold mb-2">
+                Description
+              </label>
               <input
                 type="text"
                 value={newPlace.description}
-                onChange={(e) => setNewPlace({ ...newPlace, description: e.target.value })}
+                onChange={(e) =>
+                  setNewPlace({ ...newPlace, description: e.target.value })
+                }
                 className="w-full px-3 py-2 border rounded"
                 required
               />
@@ -204,23 +247,38 @@ const Dashboard = () => {
       {activeSection === "accommodation" && (
         <div className="w-80 mb-8">
           <h2 className="text-xl font-semibold mb-4">Add Accommodation</h2>
-          <form onSubmit={handleAddAccommodation} className="bg-white p-6 rounded shadow-md">
+          <form
+            onSubmit={handleAddAccommodation}
+            className="bg-white p-6 rounded shadow-md"
+          >
             <div className="mb-4">
               <label className="block text-sm font-bold mb-2">Name</label>
               <input
                 type="text"
                 value={newAccommodation.name}
-                onChange={(e) => setNewAccommodation({ ...newAccommodation, name: e.target.value })}
+                onChange={(e) =>
+                  setNewAccommodation({
+                    ...newAccommodation,
+                    name: e.target.value,
+                  })
+                }
                 className="w-full px-3 py-2 border rounded"
                 required
               />
             </div>
             <div className="mb-4">
-              <label className="block text-sm font-bold mb-2">Description</label>
+              <label className="block text-sm font-bold mb-2">
+                Description
+              </label>
               <input
                 type="text"
                 value={newAccommodation.description}
-                onChange={(e) => setNewAccommodation({ ...newAccommodation, description: e.target.value })}
+                onChange={(e) =>
+                  setNewAccommodation({
+                    ...newAccommodation,
+                    description: e.target.value,
+                  })
+                }
                 className="w-full px-3 py-2 border rounded"
                 required
               />
@@ -278,23 +336,35 @@ const Dashboard = () => {
       {activeSection === "restaurants" && (
         <div className="w-80 mb-8">
           <h2 className="text-xl font-semibold mb-4">Add Restaurant</h2>
-          <form onSubmit={handleAddRestaurant} className="bg-white p-6 rounded shadow-md">
+          <form
+            onSubmit={handleAddRestaurant}
+            className="bg-white p-6 rounded shadow-md"
+          >
             <div className="mb-4">
               <label className="block text-sm font-bold mb-2">Name</label>
               <input
                 type="text"
                 value={newRestaurant.name}
-                onChange={(e) => setNewRestaurant({ ...newRestaurant, name: e.target.value })}
+                onChange={(e) =>
+                  setNewRestaurant({ ...newRestaurant, name: e.target.value })
+                }
                 className="w-full px-3 py-2 border rounded"
                 required
               />
             </div>
             <div className="mb-4">
-              <label className="block text-sm font-bold mb-2">Description</label>
+              <label className="block text-sm font-bold mb-2">
+                Description
+              </label>
               <input
                 type="text"
                 value={newRestaurant.description}
-                onChange={(e) => setNewRestaurant({ ...newRestaurant, description: e.target.value })}
+                onChange={(e) =>
+                  setNewRestaurant({
+                    ...newRestaurant,
+                    description: e.target.value,
+                  })
+                }
                 className="w-full px-3 py-2 border rounded"
                 required
               />
@@ -352,23 +422,35 @@ const Dashboard = () => {
       {activeSection === "transport" && (
         <div className="w-80 mb-8">
           <h2 className="text-xl font-semibold mb-4">Add Transport</h2>
-          <form onSubmit={handleAddTransport} className="bg-white p-6 rounded shadow-md">
+          <form
+            onSubmit={handleAddTransport}
+            className="bg-white p-6 rounded shadow-md"
+          >
             <div className="mb-4">
               <label className="block text-sm font-bold mb-2">Name</label>
               <input
                 type="text"
                 value={newTransport.name}
-                onChange={(e) => setNewTransport({ ...newTransport, name: e.target.value })}
+                onChange={(e) =>
+                  setNewTransport({ ...newTransport, name: e.target.value })
+                }
                 className="w-full px-3 py-2 border rounded"
                 required
               />
             </div>
             <div className="mb-4">
-              <label className="block text-sm font-bold mb-2">Description</label>
+              <label className="block text-sm font-bold mb-2">
+                Description
+              </label>
               <input
                 type="text"
                 value={newTransport.description}
-                onChange={(e) => setNewTransport({ ...newTransport, description: e.target.value })}
+                onChange={(e) =>
+                  setNewTransport({
+                    ...newTransport,
+                    description: e.target.value,
+                  })
+                }
                 className="w-full px-3 py-2 border rounded"
                 required
               />

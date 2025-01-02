@@ -18,13 +18,13 @@ const Header2 = () => {
             Explore
           </a>
           <a
-            href="/about"
+            href="/events"
             className="hover:text-gray-400 transition duration-300"
           >
             Events
           </a>
           <a
-            href="/contact"
+            href="/reviews"
             className="hover:text-gray-400 transition duration-300"
           >
             Reviews
